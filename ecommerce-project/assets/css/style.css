@@ -35,7 +35,7 @@ a {
 }
 
 .logo {
-    font-size: 21px;
+    font-size: 24px;
     font-weight: 900;
     font-style: italic;
     color: var(--white);
@@ -62,7 +62,7 @@ a {
 
 .navbar-nav .nav-link {
     color: #ffffff;
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 500;
     padding: 10px 5px !important;
     position: relative;
@@ -84,22 +84,38 @@ a {
     background: var(--primary-red);
 }
 
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 3px;
+    left: 5px;
+    width: 0;
+    height: 2px;
+    background: var(--primary-red);
+    transition: width 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: calc(100% - 10px);
+}
+
 .header-icons {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .header-icons a {
-    width: 21px;
-    height: 21px;
+    width: 30px;
+    height: 30px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 10px;
+    font-size: 14px;
     position: relative;
 }
 
@@ -111,15 +127,36 @@ a {
     position: absolute;
     top: -5px;
     right: -4px;
-    width: 9px;
-    height: 9px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: var(--primary-red);
     color: white;
-    font-size: 6px;
+    font-size: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 991.98px) {
+    .site-header .navbar-collapse {
+        padding: 6px 0 10px;
+    }
+
+    .site-header .navbar-nav {
+        gap: 0;
+    }
+
+    .site-header .navbar-nav .nav-link {
+        display: inline-block;
+        width: fit-content;
+        padding: 7px 5px !important;
+        font-size: 14px;
+    }
+
+    .site-header .header-icons {
+        margin-top: 8px;
+    }
 }
 
 :root {
@@ -207,7 +244,7 @@ a {
     margin: 0 0 18px 0.365vw;
 
     font-family: 'Montserrat', sans-serif;
-    font-size: 3.125vw;
+    font-size: clamp(38px, 3.65vw, 72px);
     font-weight: 900;
     font-style: normal;
 
@@ -227,7 +264,7 @@ a {
     border-left: 2px solid var(--hero-red);
 
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(7px, 0.417vw, 12px);
+    font-size: clamp(10px, 0.55vw, 14px);
     font-weight: 400;
     line-height: 1.7;
 
@@ -303,6 +340,42 @@ a {
     background: var(--hero-red);
 }
 
+.hero-section.is-alternate .hero-image {
+    left: auto;
+    right: 0;
+}
+
+.hero-section.is-alternate .hero-image img {
+    transform: scaleX(-1);
+}
+
+.hero-section.is-alternate .hero-content {
+    left: 5.5%;
+}
+
+.indicator-dot,
+.indicator-pill {
+    cursor: pointer;
+    opacity: 0.55;
+}
+
+.indicator-dot.active,
+.indicator-pill.active {
+    opacity: 1;
+}
+
+.indicator-dot.active {
+    width: 27px;
+    border-radius: 999px;
+    background: var(--hero-red);
+}
+
+.indicator-pill:not(.active) {
+    width: 9px;
+    border-radius: 50%;
+    background: #888C8D;
+}
+
 @media (max-width: 991px) {
 
     .hero-section {
@@ -319,6 +392,11 @@ a {
     .hero-content {
         left: 57%;
         width: 39%;
+    }
+
+    .hero-section.is-alternate .hero-content {
+        left: 4%;
+        width: 43%;
     }
 
     .hero-content h1 {
@@ -361,6 +439,14 @@ a {
         aspect-ratio: 1073 / 600;
     }
 
+    .hero-section.is-alternate .hero-image {
+        right: auto;
+    }
+
+    .hero-section.is-alternate .hero-image img {
+        transform: none;
+    }
+
     .hero-image img {
         width: 100%;
         height: 100%;
@@ -381,6 +467,11 @@ a {
         max-width: none;
 
         padding: 20px 22px;
+    }
+
+    .hero-section.is-alternate .hero-content {
+        left: auto;
+        width: 100%;
     }
 
     .hero-eyebrow {
@@ -444,7 +535,7 @@ a {
 .boxing-feature-section {
     position: relative;
     width: 100%;
-    min-height: clamp(421px, 43.85vw, 842px);
+    min-height: 0;
 
     background: #FFFFFF;
     overflow: hidden;
@@ -453,9 +544,8 @@ a {
 .boxing-feature-content {
     width: 62%;
     margin-left: 20.2%;
-
-    padding-top: clamp(48px, 5.2vw, 100px);
-    padding-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .boxing-feature-title {
@@ -508,7 +598,7 @@ a {
     align-items: center;
     gap: clamp(10px, 1vw, 20px);
 
-    margin-top: clamp(45px, 4.7vw, 90px);
+    margin-top: 24px;
 }
 
 .boxing-feature-description {
@@ -557,13 +647,14 @@ a {
 @media (max-width: 991px) {
 
     .boxing-feature-section {
-        min-height: 420px;
+        min-height: 0;
     }
 
     .boxing-feature-content {
         width: 75%;
         margin-left: 12%;
-        padding-top: 50px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     .boxing-feature-title {
@@ -667,13 +758,13 @@ a {
 
 .smart-technology-section {
     width: 100%;
-    min-height: 650px;
+    min-height: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 70px 30px;
+    padding: 30px 30px 48px;
 
     background: #FFFFFF;
     overflow: hidden;
@@ -691,7 +782,7 @@ a {
     width: 100%;
     text-align: center;
 
-    margin: 0 auto 55px;
+    margin: 0 auto clamp(24px, 3vw, 38px);
 }
 
 .technology-heading h2 {
@@ -790,9 +881,11 @@ a {
 
 .feature-icon img {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
+    object-position: center;
+    flex: 0 0 auto;
 }
 
 .feature-text {
@@ -874,7 +967,7 @@ a {
 
     .smart-technology-section {
         min-height: auto;
-        padding: 55px 20px;
+        padding: 36px 20px;
     }
 
     .smart-technology-section .container {
@@ -912,6 +1005,11 @@ a {
         width: 35px;
         height: 35px;
         font-size: 15px;
+    }
+
+    .feature-icon img {
+        width: 24px;
+        height: 24px;
     }
 
     .feature-text h3 {
@@ -1004,6 +1102,11 @@ a {
         width: 38px;
         height: 38px;
         font-size: 16px;
+    }
+
+    .feature-icon img {
+        width: 26px;
+        height: 26px;
     }
 
     .feature-text h3 {
@@ -1408,7 +1511,7 @@ a {
 
 .workout-intervals-section {
     width: 100%;
-    padding: 70px 25px;
+    padding: 50px 25px 16px;
     background: #FFFFFF;
 }
 
@@ -1472,15 +1575,17 @@ a {
 
     position: relative;
     overflow: hidden;
-    border-radius: 13px;
+    border-radius: 12px;
 
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    background: #111111;
 }
 
 .workout-video img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: scale(1.14);
 }
 
 .video-play-button {
@@ -1494,13 +1599,13 @@ a {
 
 .workout-divider {
     width: 100%;
-    margin: 55px 0;
+    margin: 28px 0;
     background: #EEEEEE;
 }
 
 .hiit-workout-section {
     width: 100%;
-    padding: clamp(48px, 6vw, 80px) 20px;
+    padding: 20px 20px 48px;
     background: #ffffff;
     overflow: hidden;
 }
@@ -1638,7 +1743,7 @@ a {
 .hiit-product-image {
     display: block !important;
     width: 100%;
-    max-width: 510px;
+    max-width: 460px;
     height: auto;
     object-fit: contain;
     margin: 0 auto;
@@ -1647,7 +1752,7 @@ a {
 @media (max-width: 991px) {
 
     .hiit-workout-section {
-        padding: 55px 25px;
+        padding: 20px 25px 42px;
     }
 
     .hiit-row {
@@ -1679,7 +1784,7 @@ a {
 @media (max-width: 767px) {
 
     .hiit-workout-section {
-        padding: 45px 20px;
+        padding: 18px 20px 36px;
     }
 
     .hiit-row {
@@ -1957,6 +2062,12 @@ a {
     color: #ffffff;
     transform: translateY(-2px);
   }
+
+  .cta-btn:hover,
+  .cta-btn:focus {
+    background-color: #c81720;
+    box-shadow: 0 6px 14px rgba(200, 23, 32, 0.45);
+  }
   
   .cta-section {
     background-color: #212529;
@@ -1979,7 +2090,8 @@ a {
   
   .cta-video {
     display: flex;
-    max-width: 540px;
+    width: min(100%, 760px);
+    aspect-ratio: 16 / 9;
     margin: 0 auto 2rem;
     border-radius: 6px;
     overflow: hidden;
@@ -1988,21 +2100,18 @@ a {
   
   .cta-video-main {
     position: relative;
-    flex: 1 1 65%;
+    width: 100%;
+    height: 100%;
     line-height: 0;
   }
-  
-  .cta-video-side {
-    flex: 1 1 35%;
-    line-height: 0;
-    border-left: 1px solid #111111;
-  }
-  
-  .cta-video-main img,
-  .cta-video-side img {
+
+  .cta-video-main img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    transform: scale(1.13);
   }
   
   .cta-play {
@@ -2041,13 +2150,6 @@ a {
   }
 
   @media (max-width: 575.98px) {
-    .cta-video {
-      flex-direction: column;
-    }
-    .cta-video-side {
-      border-left: none;
-      border-top: 1px solid #111111;
-    }
     .acc-text {
       margin-left: auto;
       margin-right: auto;
@@ -2442,6 +2544,15 @@ a {
     color: #212529;
   }
 
+  .pd-section + .products-section {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+
+  .products-section + .testimonials-section {
+    padding-top: 18px;
+  }
+
   .pd-container {
     max-width: 1140px;
   }
@@ -2483,6 +2594,48 @@ a {
     height: 100%;
     object-fit: contain;
     object-position: center;
+    cursor: zoom-in;
+  }
+
+  body.pd-lightbox-open {
+    overflow: hidden;
+  }
+
+  .pd-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    background: rgba(0, 0, 0, 0.88);
+  }
+
+  .pd-lightbox.is-open {
+    display: flex;
+  }
+
+  .pd-lightbox img {
+    display: block;
+    max-width: min(100%, 1200px);
+    max-height: 100%;
+    object-fit: contain;
+  }
+
+  .pd-lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #212529;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
   }
   
   .pd-arrow {
