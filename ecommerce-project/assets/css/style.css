@@ -29,7 +29,8 @@ a {
 .site-header {
     background: var(--header-bg);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 1000;
 }
 
@@ -427,9 +428,9 @@ a {
 
     border-left: 2px solid var(--hero-red);
 
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(10px, 0.55vw, 14px);
-    font-weight: 400;
+    font-family: 'Poppins';
+    font-size: clamp(13px, 0.55vw, 14px);
+    font-weight: 500;
     line-height: 1.7;
 
     color: #FFFFFF;
@@ -749,8 +750,8 @@ a {
 .boxing-feature-description {
     margin: 0;
 
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(8px, 0.84vw, 16px);
+    font-family: 'Poppins';
+    font-size: clamp(10px, 0.84vw, 16px);
     font-weight: 700;
 
     line-height: 1.8;
@@ -1053,7 +1054,7 @@ a {
 .feature-text p {
     margin: 0;
 
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins';
     font-size: 12px;
     font-weight: 400;
     line-height: 1.7;
@@ -1337,7 +1338,7 @@ a {
     padding-left: 9px;
     margin-bottom: 18px;
 
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.55;
@@ -1484,7 +1485,7 @@ a {
 .training-card p {
     margin: 0;
 
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins';
     font-size: 13px;
     font-weight: 400;
     line-height: 1.65;
@@ -1682,6 +1683,7 @@ a {
 }
 
 .workout-content h2 {
+  font-family: 'Montserrat';
     font-size: 34px;
     font-weight: 900;
     line-height: 1.15;
@@ -1691,11 +1693,18 @@ a {
 }
 
 .workout-badge {
+    display: inline-flex;
+    align-items: center;
     width: fit-content;
     padding: 6px 13px;
+    border-radius: 999px;
+    background: #fdebed;
+    color: #ed1c2b;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: 0.8px;
+    line-height: 1;
+    text-transform: uppercase;
 }
 
 .workout-content p {
@@ -1728,7 +1737,7 @@ a {
 .workout-video img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: 114%;
     object-fit: cover;
     transform: scale(1.14);
 }
@@ -2100,7 +2109,7 @@ a {
     max-width: 380px;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    border: 8px solid #e31e24;
+    border: 4px solid #00000099;
     background-color: #ffffff;
     overflow: hidden;
     display: flex;
@@ -2265,18 +2274,21 @@ a {
   
   .cta-video {
     display: flex;
-    width: min(100%, 760px);
+    width: min(100%, 840px);
     aspect-ratio: 16 / 9;
     margin: 0 auto 2rem;
-    border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
   }
   
   .cta-video-main {
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     line-height: 0;
   }
 
@@ -2285,31 +2297,8 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
-    transform: scale(1.2);
-    transform-origin: center top;
-  }
-  
-  .cta-play {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 46px;
-    height: 46px;
-    border: none;
-    border-radius: 50%;
-    background-color: #e31e24;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 0 6px rgba(227, 30, 36, 0.3);
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-  
-  .cta-play:hover {
-    transform: translate(-50%, -50%) scale(1.08);
+    object-position: center;
+    transform: none;
   }
   
   .cta-footer {
@@ -2389,6 +2378,14 @@ a {
   
   .product-wish:hover {
     color: #e31e24;
+  }
+
+  .product-wish.is-active {
+    color: #e31e24;
+  }
+
+  .product-wish.is-active svg {
+    fill: currentColor;
   }
   
   .product-img {
@@ -2900,7 +2897,7 @@ a {
   
   .pd-thumb.active,
   .pd-thumb:hover {
-    border: 2px solid #212529;
+    border: 2px solid #e31e24;
   }
   .pd-title {
     font-size: clamp(1.25rem, 2vw, 1.6rem);
@@ -3301,6 +3298,63 @@ a {
     background-color: #111111;
     cursor: pointer;
   }
+
+.workout-video,
+.cta-video-main {
+    cursor: pointer;
+}
+
+.demo-video-dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, .88);
+}
+
+.demo-video-dialog.is-open {
+    display: flex;
+}
+
+.demo-video-panel {
+    position: relative;
+    width: min(900px, 100%);
+    padding: 42px 16px 12px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.demo-video-panel video {
+    display: block;
+    width: 100%;
+    max-height: 75vh;
+    background: #000;
+}
+
+.demo-video-panel p {
+    margin: 10px 0 0;
+    color: #555;
+    font-size: .85rem;
+}
+
+.demo-video-close {
+    position: absolute;
+    top: 5px;
+    right: 12px;
+    border: 0;
+    background: transparent;
+    color: #212529;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+body.demo-video-open {
+    overflow: hidden;
+}
   
   .testimonial-img {
     width: 100%;
@@ -3396,6 +3450,17 @@ main > .xgrip-hero {
     padding-block-end: 0;
 }
 
+/* Product details are presented on a clean white page; keep the shared footer styled separately. */
+body.product-page {
+    background: #ffffff;
+}
+
+/* The XGrip feature ends at its red call-to-action bar without a trailing dark gap. */
+main > section.xgrip-hero:not(.hero-section) {
+    padding-block-end: 0;
+    margin-block-end: 0;
+}
+
 .xgrip-main {
     padding-block: 0;
 }
@@ -3441,7 +3506,7 @@ h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif !important; }
 
 /* Consistent red action buttons with a black hover state. */
 .btn-buy, .watch-video-btn, .video-play-button, .subscribe-btn,
-.pd-add, .pd-review, .testimonial-play, .cta-btn, .acc-btn, .xgrip-btn {
+.pd-add, .pd-review, .testimonial-play, .cta-btn, .acc-btn {
   background-color: #e31e24;
   color: #fff;
   transition: background-color .25s ease, color .25s ease;
