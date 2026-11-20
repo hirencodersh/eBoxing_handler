@@ -7,6 +7,11 @@
     box-sizing: border-box;
 }
 
+html,
+body {
+    overflow-x: clip;
+}
+
 :root {
     --primary-red: #ed1c2b;
     --dark-bg: #1e2224;
@@ -27,6 +32,7 @@ a {
 }
 
 .site-header {
+    width: 100%;
     background: var(--header-bg);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     position: sticky;
@@ -185,6 +191,8 @@ a {
     justify-content: center;
 }
 
+.mobile-menu-close { display: none; }
+
 @media (max-width: 991.98px) {
     .site-header .navbar {
         position: relative;
@@ -231,6 +239,28 @@ a {
         transform: translateX(100%);
         visibility: hidden;
         transition: transform 0.28s ease, visibility 0.28s ease;
+    }
+
+    .mobile-menu-close {
+        position: absolute;
+        top: 22px;
+        right: 20px;
+        display: grid;
+        place-items: center;
+        width: 40px;
+        height: 40px;
+        border: 1px solid #e1e5eb;
+        border-radius: 8px;
+        background: #fff;
+        color: #263142;
+        font: 32px/1 Arial, sans-serif;
+        cursor: pointer;
+    }
+
+    .mobile-menu-close:hover,
+    .mobile-menu-close:focus-visible {
+        border-color: #e31e24;
+        color: #e31e24;
     }
 
     #mainNavbar.collapse:not(.show) {
@@ -324,12 +354,13 @@ a {
 
 .hero-section {
     position: relative;
-    width: 100%;
-    max-width: 1920px;
+    left: 50%;
+    width: 100vw;
+    max-width: none;
     aspect-ratio: 1920 / 876;
     height: auto;
     min-height: 0;
-    margin: 0 auto;
+    margin: 0 0 0 -50vw;
 
     background: var(--hero-bg);
     overflow: hidden;
@@ -362,23 +393,26 @@ a {
 
     object-fit: fill;
     object-position: left center;
+    transition: transform 0.7s ease;
 }
 
 .hero-content {
     position: absolute;
 
     top: 50%;
-    left: 57.5%;
+    right: 5.5%;
+    left: auto;
 
     transform: translateY(-50%);
 
-    width: 35%;
+    width: min(35%, 551px);
     max-width: 551px;
 
     padding: 0;
     margin: 0;
 
     z-index: 2;
+    transition: left 0.7s ease;
 }
 
 .hero-eyebrow {
@@ -389,7 +423,7 @@ a {
     margin-bottom: 15px;
 
     font-family: 'Montserrat', sans-serif;
-    font-size: 8px;
+    font-size: 12.8px;
     font-weight: 600;
     letter-spacing: 1.5px;
 
@@ -483,6 +517,7 @@ a {
 }
 
 .hero-section.is-alternate .hero-content {
+    right: auto;
     left: 5.5%;
 }
 
@@ -535,13 +570,15 @@ a {
     .hero-slider-next { right: 10px; }
 
     .hero-content {
-        left: 57%;
+        right: 4%;
+        left: auto;
         width: 39%;
     }
 
     .hero-section.is-alternate .hero-content {
         left: 4%;
-        width: 43%;
+        right: auto;
+        width: 39%;
     }
 
     .hero-content h1 {
@@ -567,9 +604,11 @@ a {
         display: flex;
         flex-direction: column;
 
-        width: 100%;
+        left: 50%;
+        width: 100vw;
         height: auto;
         min-height: auto;
+        margin-left: -50vw;
 
         aspect-ratio: auto;
 
@@ -610,6 +649,7 @@ a {
 
         top: auto;
         left: auto;
+        right: auto;
 
         transform: none;
 
@@ -935,7 +975,7 @@ a {
 .technology-heading h2 {
     margin: 0 0 12px;
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(28px, 2.1vw, 40px);
+    font-size: clamp(48px, 2.1vw, 40px);
     font-weight: 900;
     line-height: 1.2;
 
@@ -946,7 +986,7 @@ a {
     margin: 0;
 
     font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
+    font-size: 22.2px;
     font-weight: 600;
     line-height: 1.6;
 
@@ -1043,7 +1083,7 @@ a {
 .feature-text h3 {
     margin: 0 0 7px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 15px;
+    font-size: 17.3px;
     font-weight: 800;
     line-height: 1.4;
 
@@ -1053,7 +1093,7 @@ a {
 .feature-text p {
     margin: 0;
     font-family: 'Poppins';
-    font-size: 12px;
+    font-size: 14.7px;
     font-weight: 400;
     line-height: 1.7;
 
@@ -1098,7 +1138,7 @@ a {
     color: #ED1C2B;
 
     font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
+    font-size: 17.5px;
     font-weight: 700;
 }
 
@@ -1310,7 +1350,7 @@ a {
     margin: 0;
 
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(28px, 3vw, 36px);
+    font-size: clamp(28px, 3vw, 37px);
     font-weight: 900;
     line-height: 1.35;
     letter-spacing: -0.5px;
@@ -1336,7 +1376,7 @@ a {
     margin-bottom: 18px;
 
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-size: 19px;
     font-weight: 400;
     line-height: 1.55;
 
@@ -1369,14 +1409,12 @@ a {
     padding: 64px 20px;
 
     background-image:
-        linear-gradient(rgba(24, 29, 30, 0.58),
-            rgba(24, 29, 30, 0.58)),
+        linear-gradient(rgba(24, 29, 30, 0.34),
+            rgba(24, 29, 30, 0.34)),
         url('../images/features/eBoxingMain4.png.png');
-
     background-size: cover;
     background-position: center 42%;
     background-repeat: no-repeat;
-
     overflow: hidden;
 }
 
@@ -1423,25 +1461,51 @@ a {
 }
 
 .training-card {
+    position: relative;
+    overflow: hidden;
     width: 100%;
     height: 100%;
     min-height: 230px;
 
     padding: 26px 24px;
 
-    background: rgba(24, 29, 30, 0.62);
+    background: rgba(31, 37, 39, 0.46);
 
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     border-radius: 12px;
 
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08),
+        0 12px 32px rgba(0, 0, 0, 0.16);
 
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.training-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(125deg,
+        rgba(255, 255, 255, 0.24) 0%,
+        rgba(255, 255, 255, 0.08) 28%,
+        transparent 58%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
 .training-card:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(164, 179, 183, 0.24);
+    border-color: rgba(255, 255, 255, 0.58);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        0 16px 40px rgba(0, 0, 0, 0.28),
+        0 0 24px rgba(255, 255, 255, 0.12);
+    transform: translateY(-3px);
+}
+
+.training-card:hover::before {
+    opacity: 1;
 }
 
 .training-mode {
@@ -1681,7 +1745,7 @@ a {
 
 .workout-content h2 {
   font-family: 'Montserrat', sans-serif;
-    font-size: 34px;
+    font-size: 48px;
     font-weight: 900;
     line-height: 1.15;
     letter-spacing: -0.7px;
@@ -1707,7 +1771,7 @@ a {
 .workout-content p {
    font-family: 'Poppins', sans-serif;
     max-width: 480px;
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.75;
     font-weight: 400;
     color: #73777B;
@@ -1857,6 +1921,7 @@ a {
 }
 
 .hiit-benefit p {
+   font-family: 'Poppins';
     display: block !important;
     color: #303437 !important;
     font-size: 11px;
@@ -2043,7 +2108,7 @@ a {
   }
   
   .xgrip-main {
-    padding: clamp(40px, 6vw, 80px) 15px;
+    padding: clamp(44px, 6vw, 80px) 15px;
   }
   
   .xgrip-red {
@@ -2052,7 +2117,7 @@ a {
 
   .xgrip-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.75rem, 3.6vw, 3rem);
+    /* font-size: clamp(1.75rem, 3.6vw, 3rem); */
     font-weight: 800;
     line-height: 1.15;
     margin-bottom: 0.75rem;
@@ -2258,7 +2323,7 @@ a {
   
   .cta-section {
     background-color: #212529;
-    padding: clamp(50px, 6vw, 70px) 0 clamp(40px, 5vw, 60px);
+    padding: 32px 0 40px;
     font-family: 'Montserrat', sans-serif;
     color: #ffffff;
     text-align: center;
@@ -2266,10 +2331,10 @@ a {
   
   .cta-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: clamp(1.4rem, 2.6vw, 2.2rem);
-    font-weight: 800;
-    line-height: 1.2;
-    margin-bottom: 2.5rem;
+    font-size: clamp(1.5rem, 2.42vw, 46.4px);
+    font-weight: 900;
+    line-height: 51.97px;
+    margin-bottom: 28px;
   }
   
   .cta-red {
@@ -2278,12 +2343,12 @@ a {
   
   .cta-video {
     display: flex;
-    width: min(100%, 840px);
+    width: min(100%, 875px);
     aspect-ratio: 16 / 9;
-    margin: 0 auto 2rem;
+    margin: 0 auto 28px;
     overflow: hidden;
     border: 0;
-    border-radius: 0;
+    border-radius: 20px;
     background: transparent;
     box-shadow: none;
   }
@@ -2314,8 +2379,20 @@ a {
   }
   
   .cta-get {
-    font-size: clamp(0.85rem, 1vw, 1rem);
+    font-size: clamp(1rem, 1.34vw, 25.6px);
     font-weight: 700;
+    line-height: 42.24px;
+  }
+
+  @media (max-width: 767.98px) {
+    .cta-section { padding: 32px 0; }
+    .cta-title {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .cta-video { margin-bottom: 24px; border-radius: 14px; }
+    .cta-get { font-size: 1rem; line-height: 1.5; }
   }
 
   @media (max-width: 575.98px) {

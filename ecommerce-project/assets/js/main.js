@@ -249,13 +249,6 @@ document.addEventListener("DOMContentLoaded", function () {
             startHeroRotation();
         }
 
-        hero.querySelector(".hero-slider-prev").addEventListener("click", function () {
-            moveHeroSlide(-1);
-        });
-        hero.querySelector(".hero-slider-next").addEventListener("click", function () {
-            moveHeroSlide(1);
-        });
-
         hero.addEventListener("pointerdown", function (event) {
             if (event.button !== 0 || event.target.closest("a, button")) return;
             dragStartX = event.clientX;
@@ -275,8 +268,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (event.key === "ArrowRight") moveHeroSlide(1);
         });
 
-        hero.addEventListener("mouseenter", stopHeroRotation);
-        hero.addEventListener("mouseleave", startHeroRotation);
         hero.addEventListener("focusin", stopHeroRotation);
         hero.addEventListener("focusout", startHeroRotation);
         document.addEventListener("visibilitychange", startHeroRotation);
@@ -290,6 +281,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const navbarCollapse = document.querySelector(
         "#mainNavbar"
     );
+
+    const mobileMenuClose = document.querySelector(".mobile-menu-close");
+    if (mobileMenuClose && navbarCollapse) {
+        mobileMenuClose.addEventListener("click", function () {
+            bootstrap.Collapse.getOrCreateInstance(navbarCollapse, { toggle: false }).hide();
+        });
+    }
 
     navLinks.forEach(function (link) {
         link.addEventListener("click", function () {
