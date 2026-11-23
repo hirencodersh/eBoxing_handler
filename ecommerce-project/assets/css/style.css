@@ -61,12 +61,18 @@ a {
 
 @media (min-width: 992px) {
     .site-header .logo {
-        margin-left: 8vw;
+          margin-left: 0;
+        font-size: clamp(19px, 1.65vw, 24px);
     }
 
     .site-header .header-icons {
-        margin-right: 4.5vw;
+        margin-right: 0;
     }
+
+    .site-header .navbar-nav { gap: clamp(2px, .7vw, 10px); }
+    .site-header .navbar-nav .nav-link { font-size: clamp(11px, .95vw, 13px); }
+    .site-header .header-icons { gap: 6px; }
+    .site-header .header-icons a { width: 28px; height: 28px; }
 }
 
 @media (max-width: 991.98px) {
@@ -199,12 +205,36 @@ a {
     }
 
     .site-header .navbar-toggler {
+        position: relative;
         padding: 8px 10px;
         border: 1px solid rgba(255, 255, 255, 0.32);
         border-radius: 10px;
         box-shadow: none;
         transition: background-color .2s ease, border-color .2s ease;
     }
+
+    .site-header .navbar-toggler-icon {
+        transition: transform .2s ease, background-image .2s ease;
+    }
+
+    .site-header .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+        background-image: none;
+        position: relative;
+    }
+
+    .site-header .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before,
+    .site-header .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        background: #ffffff;
+    }
+
+    .site-header .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before { transform: rotate(45deg); }
+    .site-header .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after { transform: rotate(-45deg); }
 
     .site-header .navbar-toggler:hover,
     .site-header .navbar-toggler[aria-expanded="true"] {
@@ -253,9 +283,21 @@ a {
         border-radius: 8px;
         background: #fff;
         color: #263142;
-        font: 32px/1 Arial, sans-serif;
+        font-size: 0;
         cursor: pointer;
     }
+
+    .mobile-menu-close::before,
+    .mobile-menu-close::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: currentColor;
+    }
+
+    .mobile-menu-close::before { transform: rotate(45deg); }
+    .mobile-menu-close::after { transform: rotate(-45deg); }
 
     .mobile-menu-close:hover,
     .mobile-menu-close:focus-visible {
@@ -1967,13 +2009,12 @@ a {
 }
 
 .hiit-product-image {
-    margin-left: -180px;
+    margin-inline: auto;
     display: block;
     width: 100%;
     max-width: 460px;
     height: auto;
     object-fit: contain;
-    /* margin: 0 auto; */
 }
 
 @media (max-width: 991px) {
@@ -2082,7 +2123,8 @@ a {
     }
 
     .hiit-product-image {
-        max-width: 340px;
+        width: min(100%, 340px);
+        margin-inline: auto;
     }
 }
 
