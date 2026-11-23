@@ -1414,7 +1414,7 @@ a {
 .benefits-list li {
     position: relative;
 
-    padding-left: 9px;
+    padding-left: 25px;
     margin-bottom: 18px;
 
     font-family: 'Poppins', sans-serif;
@@ -2211,6 +2211,7 @@ a {
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+    margin-bottom: 2rem;
   }
   
   .xgrip-circle {
@@ -2841,6 +2842,12 @@ a {
       margin-right: auto;
     }
     .social {
+      justify-content: center;
+    }
+    .footer-contact {
+      text-align: center;
+    }
+    .footer-contact li {
       justify-content: center;
     }
 
