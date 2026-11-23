@@ -545,6 +545,32 @@ a {
     color: #FFFFFF;
 }
 
+
+/* Slider dots (static; add JS later to switch slides) */
+.hero-dots {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background-color: #948e8a;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.hero-dot.active {
+  width: 40px;
+  background-color: #e31e24;
+}
+
 .hero-section.is-alternate .hero-image {
     left: auto;
     right: 0;
@@ -637,6 +663,9 @@ a {
         width: 180px;
         height: 48px;
         font-size: 14px;
+    }
+    .hero-dots {
+      bottom: 20px;
     }
 }
 
@@ -2295,7 +2324,7 @@ a {
   
   .acc-img-frame {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 0 / 1;
     padding: 0;
     border: 0;
     border-radius: 0;
